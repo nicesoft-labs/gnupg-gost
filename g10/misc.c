@@ -621,6 +621,12 @@ openpgp_cipher_algo_name (cipher_algo_t algo)
     case CIPHER_ALGO_CAMELLIA128: return "CAMELLIA128";
     case CIPHER_ALGO_CAMELLIA192: return "CAMELLIA192";
     case CIPHER_ALGO_CAMELLIA256: return "CAMELLIA256";
+#ifdef GCRY_CIPHER_GOST28147
+    case CIPHER_ALGO_GOST28147:      return "GOST28147";
+#endif
+#ifdef GCRY_CIPHER_GOST28147_MESH
+    case CIPHER_ALGO_GOST28147_MESH: return "GOST28147_MESH";
+#endif
     case CIPHER_ALGO_NONE:
     default: return "?";
     }
@@ -738,6 +744,7 @@ openpgp_pk_test_algo2 (pubkey_algo_t algo, unsigned int use)
 
     case PUBKEY_ALGO_ELGAMAL_E: ga = GCRY_PK_ELG;   break;
     case PUBKEY_ALGO_DSA:       ga = GCRY_PK_DSA;   break;
+    case PUBKEY_ALGO_GOSTR34102001: ga = GCRY_PK_ECC; break;
 
     /* GOST R 34.10-2012 ECDH (user ID 34) */
 #ifdef GPG_USE_ECDH
@@ -816,6 +823,9 @@ openpgp_pk_algo_usage ( int algo )
       case PUBKEY_ALGO_DSA:
           use = PUBKEY_USAGE_CERT | PUBKEY_USAGE_SIG | PUBKEY_USAGE_AUTH;
           break;
+      case PUBKEY_ALGO_GOSTR34102001:
+          use = PUBKEY_USAGE_CERT | PUBKEY_USAGE_SIG | PUBKEY_USAGE_AUTH;
+          break;
       case PUBKEY_ALGO_ECDSA:
       case PUBKEY_ALGO_EDDSA:
       case PUBKEY_ALGO_GOSTR34102012:
@@ -843,6 +853,7 @@ openpgp_pk_algo_name (pubkey_algo_t algo)
     case PUBKEY_ALGO_ECDH:      return "ECDH";
     case PUBKEY_ALGO_ECDSA:     return "ECDSA";
     case PUBKEY_ALGO_EDDSA:     return "EDDSA";
+    case PUBKEY_ALGO_GOSTR34102001: return "GOSTR34102001";
     case PUBKEY_ALGO_GOSTR34102012: return "GOSTR34102012";
     case PUBKEY_ALGO_GOSTR34102012_ECDH: return "GOSTR34102012_ECDH";
     default: return "?";
