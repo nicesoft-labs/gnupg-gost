@@ -71,21 +71,36 @@ static struct {
   { "GOST2001-CryptoPro-XchA","1.2.643.2.2.36.0", 256, "CryptoPro-XchA", PUBKEY_ALGO_GOSTR34102001 },
   { "GOST2001-CryptoPro-XchB","1.2.643.2.2.36.1", 256, "CryptoPro-XchB", PUBKEY_ALGO_GOSTR34102001 },
 
-/* GOST R 34.10-2012 paramSetA curves for signature */
-{ "id-tc26-gost-3410-12-256-paramSetA", "1.2.643.7.1.2.1.1.1", 256, "paramSetA",
-  PUBKEY_ALGO_GOSTR34102012 },
-{ "id-tc26-gost-3410-12-512-paramSetB", "1.2.643.7.1.2.1.1.2", 512, "paramSetB",
-  PUBKEY_ALGO_GOSTR34102012 },
-{ "id-tc26-gost-3410-12-512-paramSetC", "1.2.643.7.1.2.1.1.3", 512, "paramSetC",
-  PUBKEY_ALGO_GOSTR34102012 },
-/* GOST R 34.10-2012 paramSetA curves for ECDH */
-{ "id-tc26-gost-3410-12-256-paramSetA", "1.2.643.7.1.2.1.2.1", 256, "paramSetA",
-  PUBKEY_ALGO_GOSTR34102012_ECDH },
-{ "id-tc26-gost-3410-12-512-paramSetB", "1.2.643.7.1.2.1.2.2", 512, "paramSetB",
-  PUBKEY_ALGO_GOSTR34102012_ECDH },
-/* GOST R 34.10-2012 paramSetC curves for ECDH */
-{ "id-tc26-gost-3410-12-512-paramSetC", "1.2.643.7.1.2.1.2.3", 512, "paramSetC",
-  PUBKEY_ALGO_GOSTR34102012_ECDH },
+/* GOST R 34.10-2012 curves for signature */
+{ "id-tc26-gost-3410-12-256-paramSetA", "1.2.643.7.1.2.1.1.1", 256,
+  "GOST2012-256-A", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-256-paramSetB", "1.2.643.7.1.2.1.1.2", 256,
+  "GOST2012-256-tc26-B", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-256-paramSetC", "1.2.643.7.1.2.1.1.3", 256,
+  "GOST2012-256-tc26-C", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-256-paramSetD", "1.2.643.7.1.2.1.1.4", 256,
+  "GOST2012-256-tc26-D", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-512-paramSetA", "1.2.643.7.1.2.1.2.1", 512,
+  "GOST2012-512-tc26-A", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-512-paramSetB", "1.2.643.7.1.2.1.2.2", 512,
+  "GOST2012-512-tc26-B", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-512-paramSetC", "1.2.643.7.1.2.1.2.3", 512,
+  "GOST2012-512-tc26-C", PUBKEY_ALGO_GOSTR34102012 },
+{ "id-tc26-gost-3410-12-512-paramSetTest", "1.2.643.7.1.2.1.2.0", 512,
+  "GOST2012-512-test", PUBKEY_ALGO_GOSTR34102012 },
+/* GOST R 34.10-2012 curves for ECDH */
+{ "id-tc26-gost-3410-12-256-paramSetA", "1.2.643.7.1.2.1.2.1", 256,
+  "GOST2012-tc26-A", PUBKEY_ALGO_GOSTR34102012_ECDH },
+{ "id-tc26-gost-3410-12-256-paramSetB", "1.2.643.7.1.2.1.2.2", 256,
+  "GOST2012-tc26-B", PUBKEY_ALGO_GOSTR34102012_ECDH },
+{ "id-tc26-gost-3410-12-256-paramSetC", "1.2.643.7.1.2.1.2.3", 256,
+  "GOST2012-512-tc26-C", PUBKEY_ALGO_GOSTR34102012_ECDH },
+{ "id-tc26-gost-3410-12-512-paramSetA", "1.2.643.7.1.2.1.2.1", 512,
+  "GOST2012-512-tc26-A", PUBKEY_ALGO_GOSTR34102012_ECDH },
+{ "id-tc26-gost-3410-12-512-paramSetB", "1.2.643.7.1.2.1.2.2", 512,
+  "GOST2012-512-tc26-B", PUBKEY_ALGO_GOSTR34102012_ECDH },
+{ "id-tc26-gost-3410-12-512-paramSetC", "1.2.643.7.1.2.1.2.3", 512,
+  "GOST2012-512-tc26-C", PUBKEY_ALGO_GOSTR34102012_ECDH },
 
   { NULL, NULL, 0}
 };

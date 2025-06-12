@@ -4,7 +4,7 @@
 int main() {
     unsigned int algo;
     int nbits;
-    const char *curve = openpgp_is_curve_supported("paramSetA", &algo, &nbits);
+    const char *curve = openpgp_is_curve_supported("GOST2012-256-A", &algo, &nbits);
     if (curve)
         printf("paramSetA found: %s (%u bits, algo %u)\n", curve, nbits, algo);
     else
