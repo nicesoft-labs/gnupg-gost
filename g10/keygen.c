@@ -2814,10 +2814,15 @@ ask_curve (int *algo, int *subkey_algo, const char *current)
   struct {
     const char *name;
     const char* eddsa_curve; /* Corresponding EdDSA curve.  */
-    const char *pretty_name;
-    unsigned int supported : 1;   /* Supported by gpg.     */
-    unsigned int de_vs : 1;       /* Allowed in CO_DE_VS.  */
-    unsigned int expert_only : 1; /* Only with --expert    */
+    /* GOST R 34.10-2012 paramSet A/B/C/D + test */
+    { "id-tc26-gost-3410-12-256-paramSetA",    NULL, "paramSetA",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-256-paramSetB",    NULL, "paramSetB",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-256-paramSetC",    NULL, "paramSetC",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-256-paramSetD",    NULL, "paramSetD",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetA",    NULL, "paramSetA-512",MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetB",    NULL, "paramSetB-512",MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetC",    NULL, "paramSetC-512",MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetTest", NULL, "paramSetTest", MY_USE_ECDSADH, 1, 1, 1 },
     unsigned int available : 1;   /* Available in Libycrypt (runtime checked) */
   } curves[] = {
 #if GPG_USE_ECDSA || GPG_USE_ECDH
