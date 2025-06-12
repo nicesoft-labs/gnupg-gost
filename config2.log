@@ -1,0 +1,21 @@
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... no
+checking xargs -n works... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+configure: autobuild project... gnupg
+configure: autobuild revision... 2.4.8
+configure: autobuild hostname... niceos
+configure: autobuild timestamp... 20250611-162719
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... gcc
+checking whether the C compiler works... no
+configure: error: in '/usr/src/gnupg':
+configure: error: C compiler cannot create executables
+See 'config.log' for more details

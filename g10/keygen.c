@@ -20,6 +20,7 @@
  */
 
 #include <config.h>
+#include "../common/logging.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2340,7 +2341,11 @@ ask_algo (ctrl_t ctrl, int addmode, int *r_subkey_algo, unsigned int *r_usage,
 
 #if GPG_USE_ECDSA || GPG_USE_ECDH || GPG_USE_EDDSA
   if (!addmode)
-    tty_printf (_("   (%d) ECC (sign and encrypt)%s\n"), 9, _(" *default*") );
+    {
+      tty_printf (_("   (%d) ECC (sign and encrypt)%s\n"),  9, _(" *default*") );
+      tty_printf (_("   (%d) GOST R 34.10-2012 signature\n"), 33);
+      tty_printf (_("   (%d) GOST R 34.10-2012 ECDH key agreement\n"), 34);
+    }
   tty_printf (_("  (%d) ECC (sign only)\n"), 10 );
   if (opt.expert)
     tty_printf (_("  (%d) ECC (set your own capabilities)%s\n"), 11, "");
@@ -2434,6 +2439,17 @@ ask_algo (ctrl_t ctrl, int addmode, int *r_subkey_algo, unsigned int *r_usage,
           *r_usage = ask_key_flags (algo, addmode, 0);
           break;
 	}
+      else if (algo == 33 || !strcmp (answer, "gostr3410-2012"))
+        {
+          algo = PUBKEY_ALGO_GOSTR34102012;
+          break;
+        }
+      else if (algo == 34 || !strcmp (answer, "gostr3410-2012-ecdh"))
+        {
+          algo = PUBKEY_ALGO_GOSTR34102012_ECDH;
+          *r_usage = PUBKEY_USAGE_ENC;
+          break;
+        }
       else if ((algo == 12 || !strcmp (answer, "ecc/e"))
                && addmode)
         {
@@ -2818,6 +2834,16 @@ ask_curve (int *algo, int *subkey_algo, const char *current)
     { "brainpoolP384r1", NULL, "Brainpool P-384",  MY_USE_ECDSADH,  1, 1, 0 },
     { "brainpoolP512r1", NULL, "Brainpool P-512",  MY_USE_ECDSADH,  1, 1, 0 },
     { "secp256k1",       NULL, NULL,               MY_USE_ECDSADH,  0, 1, 0 },
+    /* GOST R 34.10-2001 CryptoPro curves */
+    { "GOST2001-CryptoPro-A",    NULL, "CryptoPro A",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "GOST2001-CryptoPro-B",    NULL, "CryptoPro B",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "GOST2001-CryptoPro-C",    NULL, "CryptoPro C",    MY_USE_ECDSADH, 1, 1, 1 },
+    { "GOST2001-CryptoPro-XchA", NULL, "CryptoPro XchA", MY_USE_ECDSADH, 1, 1, 1 },
+    { "GOST2001-CryptoPro-XchB", NULL, "CryptoPro XchB", MY_USE_ECDSADH, 1, 1, 1 },
+    /* GOST R 34.10-2012 paramSet A/B/C */
+    { "id-tc26-gost-3410-12-256-paramSetA", NULL, "paramSetA", MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetB", NULL, "paramSetB", MY_USE_ECDSADH, 1, 1, 1 },
+    { "id-tc26-gost-3410-12-512-paramSetC", NULL, "paramSetC", MY_USE_ECDSADH, 1, 1, 1 },
   };
 #undef MY_USE_ECDSADH
   int idx;
@@ -3537,6 +3563,37 @@ parse_key_parameter_part (ctrl_t ctrl,
   flags = strchr (string, '/');
   if (flags)
     *flags++ = 0;
+
+  /* Special case GOST R 34.10-2012 keys: handle curve paramSet and ECDH variant */
+  if ((ascii_strncasecmp (string, "gostr34102012", 14) == 0)
+      || (ascii_strncasecmp (string, "gostr3410-2012", 14) == 0))
+    {
+      int want_ecdh = (string[14] == '-' && !ascii_strcasecmp (string + 15, "ecdh"));
+      unsigned int need_algo = want_ecdh ? PUBKEY_ALGO_GOSTR34102012_ECDH
+                                        : PUBKEY_ALGO_GOSTR34102012;
+      algo = need_algo;
+      if (!flags)
+        return gpg_error (GPG_ERR_INV_VALUE);
+      /* extract the curve parameter set (before any usage flags) */
+      {
+        char *param = flags;
+        char *rest = strchr (param, ',');
+        if (rest)
+          {
+            *rest++ = 0;
+            flags = rest;
+          }
+        log_debug("gostr3410-2012: testing curve '%s'", param);
+        log_debug ("gostr3410-2012: testing curve '%s'", param);
+        if (!(curve = openpgp_is_curve_supported (param, &need_algo, &size)))
+          {
+            log_debug ("gostr3410-2012: curve '%s' not supported", param);
+            return gpg_error (GPG_ERR_UNKNOWN_CURVE);
+          }
+        /* override algorithm if mapping provided by curve table */
+        algo = need_algo;
+      }
+    }
 
   algo = 0;
   if (!ascii_strcasecmp (string, "card"))

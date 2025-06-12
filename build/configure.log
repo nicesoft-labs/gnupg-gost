@@ -1,0 +1,337 @@
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+configure: autobuild project... gnupg
+configure: autobuild revision... 2.4.8
+configure: autobuild hostname... niceos
+configure: autobuild timestamp... 20250611-135750
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for wchar.h... yes
+checking for minix/config.h... no
+checking for sys/socket.h... yes
+checking for vfork.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking whether _XOPEN_SOURCE should be defined... no
+checking whether SELinux support is requested... no
+checking whether to allocate extra secure memory... no
+checking calibrated passphrase-stretching (s2k) duration... 100 milliseconds
+checking whether to enable trust models... yes
+checking whether to enable TOFU... yes
+checking whether to enable libdns... yes
+checking whether to enable the RSA public key for gpg... yes
+checking whether to enable the ECDH public key for gpg... yes
+checking whether to enable the ECDSA public key for gpg... yes
+checking whether to enable the EdDSA public key for gpg... yes
+checking whether to enable the IDEA cipher for gpg... yes
+checking whether to enable the CAST5 cipher for gpg... yes
+checking whether to enable the BLOWFISH cipher for gpg... yes
+checking whether to enable the AES128 cipher for gpg... yes
+checking whether to enable the AES192 cipher for gpg... yes
+checking whether to enable the AES256 cipher for gpg... yes
+checking whether to enable the TWOFISH cipher for gpg... yes
+checking whether to enable the CAMELLIA128 cipher for gpg... yes
+checking whether to enable the CAMELLIA192 cipher for gpg... yes
+checking whether to enable the CAMELLIA256 cipher for gpg... yes
+checking whether to enable the MD5 hash for gpg... yes
+checking whether to enable the RIPE-MD160 hash for gpg... yes
+checking whether to enable the SHA-224 hash for gpg... yes
+checking whether to enable the SHA-384 hash for gpg... yes
+checking whether to enable the SHA-512 hash for gpg... yes
+checking whether to enable the ZIP and ZLIB compression algorithm... yes
+checking whether to enable the BZIP2 compression algorithm... yes
+checking whether to enable external program execution... yes
+checking whether to enable photo ID viewing... yes
+checking whether to use a fixed photo ID viewer... no
+checking for the size of the key and uid cache... 4096
+checking whether use of capabilities is requested... no
+checking whether smartcard support is requested... yes
+checking whether to enable the internal CCID driver... auto
+checking whether to auto start dirmngr... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+configure: checking for programs
+checking whether make sets $(MAKE)... (cached) yes
+checking whether build environment is sane... yes
+checking for gawk... (cached) gawk
+checking for gcc... (cached) gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to enable C11 features... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether ln -s works... yes
+checking for ranlib... ranlib
+checking for ar... ar
+checking for perl... /usr/bin/perl
+checking for windres... no
+checking for yat2m... /usr/bin/yat2m
+checking for library containing strerror... none required
+checking for gcc option to enable large file support... none needed
+configure: awk with an option -n for hexadecimal
+checking for cc for build... gcc
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+configure: checking for libraries
+checking for gpg-error-config... no
+checking for gpgrt-config... no
+checking for GPG Error - version >= 1.46... no
+checking for libgcrypt-config... /usr/bin/libgcrypt-config
+checking for LIBGCRYPT - version >= 1.9.1... yes (1.11.0)
+checking LIBGCRYPT API version... okay
+configure: WARNING:
+***
+*** The config script "/usr/bin/libgcrypt-config" was
+*** built for x86_64-niceos-linux-gnu and thus may not match the
+*** used host x86_64-pc-linux-gnu.
+*** You may want to use the configure option --with-libgcrypt-prefix
+*** to specify a matching config script or use $SYSROOT.
+***
+checking for libassuan-config... /usr/bin/libassuan-config
+checking for LIBASSUAN - version >= 2.5.0... yes (3.0.2)
+checking LIBASSUAN API version... okay
+configure: WARNING:
+***
+*** The config script "/usr/bin/libassuan-config" was
+*** built for x86_64-niceos-linux-gnu and thus may not match the
+*** used host x86_64-pc-linux-gnu.
+*** You may want to use the configure option --with-libassuan-prefix
+*** to specify a matching config script.
+***
+checking for ksba-config... /usr/bin/ksba-config
+checking for KSBA - version >= 1.6.3... yes (1.6.7)
+checking KSBA API version... okay
+configure: WARNING:
+***
+*** The config script "/usr/bin/ksba-config" was
+*** built for x86_64-niceos-linux-gnu and thus may not match the
+*** used host x86_64-pc-linux-gnu.
+*** You may want to use the configure option --with-libksba-prefix
+*** to specify a matching config script.
+***
+checking for libusb_init in -lusb-1.0... no
+checking libusb include dir... not found
+checking for library containing dlopen... none required
+checking for SQLITE3... yes
+checking for encfs... /usr/bin/encfs
+checking for fusermount... /usr/bin/fusermount
+checking for npth-config... no
+checking for NPTH - version >= 1.2... no
+configure: WARNING:
+***
+*** To support concurrent access for example in gpg-agent and the SCdaemon
+*** we need the support of the New Portable Threads Library.
+***
+checking for ntbtls-config... no
+checking for NTBTLS - version >= 0.2.0... no
+checking for LIBGNUTLS... no
+configure: WARNING:
+***
+*** Neither NTBTLS nor GNUTLS available - not building dirmngr.
+***
+*** Package 'gnutls' not found
+*** 
+configure: checking for networking options
+checking for gethostbyname... yes
+checking for setsockopt... yes
+configure: WARNING:
+***
+*** Building without LDAP support.
+*** No CRL access or X.509 certificate search available.
+***
+checking for sendmail... /usr/sbin/sendmail
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for iconv... yes
+checking for working iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+configure: checking for gettext
+checking whether NLS is requested... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+../configure: line 13581: gt_INTL_MACOSX: command not found
+checking for GNU gettext in libc... yes
+checking whether to use NLS... yes
+checking where the gettext function comes from... libc
+checking for strchr... yes
+checking for nl_langinfo and CODESET... yes
+checking for LC_MESSAGES... yes
+configure: checking for header files
+checking for unistd.h... (cached) yes
+checking for langinfo.h... yes
+checking for termio.h... yes
+checking for locale.h... yes
+checking for pwd.h... yes
+checking for inttypes.h... (cached) yes
+checking for signal.h... yes
+checking for sys/select.h... yes
+checking for sys/time.h... yes
+checking for stdint.h... (cached) yes
+checking for signal.h... (cached) yes
+checking for termios.h... yes
+checking for ucred.h... no
+checking for sys/ucred.h... no
+checking for sys/sysmacros.h... yes
+checking for sys/mkdev.h... no
+configure: checking for system characteristics
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for working volatile... yes
+checking for size_t... yes
+checking for mode_t... yes
+checking for sigdescr_np... yes
+checking for gcc options needed to detect all undeclared functions... none needed
+checking whether sys_siglist is declared... no
+checking for socklen_t... yes
+checking for library containing inet_addr... none required
+checking endianness... little
+checking for byte... no
+checking for ushort... yes
+checking for ulong... yes
+checking for u16... no
+checking for u32... no
+checking size of unsigned short... 2
+checking size of unsigned int... 4
+checking size of unsigned long... 8
+checking size of unsigned long long... 8
+checking size of size_t... 8
+checking size of time_t... 8
+checking whether time_t is unsigned... no
+configure: checking for library functions
+checking whether getpagesize is declared... yes
+checking for declarations of fseeko and ftello... yes
+checking for vprintf... yes
+checking for fork... yes
+checking for vfork... yes
+checking for pid_t... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking for atexit... yes
+checking for canonicalize_file_name... yes
+checking for clock_gettime... yes
+checking for ctermid... yes
+checking for explicit_bzero... yes
+checking for fcntl... yes
+checking for flockfile... yes
+checking for fsync... yes
+checking for ftello... yes
+checking for ftruncate... yes
+checking for funlockfile... yes
+checking for getaddrinfo... yes
+checking for getenv... yes
+checking for getpagesize... yes
+checking for getpwnam... yes
+checking for getpwuid... yes
+checking for getrlimit... yes
+checking for getrusage... yes
+checking for gettimeofday... yes
+checking for gmtime_r... yes
+checking for inet_ntop... yes
+checking for inet_pton... yes
+checking for isascii... yes
+checking for lstat... yes
+checking for memicmp... no
+checking for memmove... yes
+checking for memrchr... yes
+checking for mmap... yes
+checking for nl_langinfo... yes
+checking for pipe... yes
+checking for raise... yes
+checking for rand... yes
+checking for setenv... yes
+checking for setlocale... yes
+checking for setrlimit... yes
+checking for sigaction... yes
+checking for sigprocmask... yes
+checking for stat... yes
+checking for stpcpy... yes
+checking for strcasecmp... yes
+checking for strerror... yes
+checking for strftime... yes
+checking for stricmp... no
+checking for strlwr... no
+checking for strncasecmp... yes
+checking for strpbrk... yes
+checking for strsep... yes
+checking for strtol... yes
+checking for strtoul... yes
+checking for strtoull... yes
+checking for tcgetattr... yes
+checking for timegm... yes
+checking for times... yes
+checking for ttyname... yes
+checking for unsetenv... yes
+checking for wait4... yes
+checking for waitpid... yes
+checking for library containing nanosleep... none required
+checking for inotify_init... yes
+checking for struct sigaction... yes
+checking for sigset_t... yes
+checking for struct ucred.pid... yes
+checking for struct ucred.cr_pid... no
+checking for struct sockpeercred.pid... no
+checking for getpeerucred... no
+checking for zlib.h... yes
+checking for deflateInit2_ in -lz... yes
+checking for bzlib.h... yes
+checking for BZ2_bzCompressInit in -lbz2... yes
+checking whether readline via "-lreadline" is present and sane... yes
+checking for library containing TSS_Create... no
+checking for library containing Esys_Initialize... no
+configure: checking for cc features
+checking if gcc ignores unknown -Wno-* options... yes
+checking if gcc supports -Wpointer-arith... yes
+checking whether to enable log_clock... no
+checking whether "make check" shall run all tests... no
+checking whether tests should be run... yes
+configure:
+***
+*** You need libgpg-error to build this program.
+**  This library is for example available at
+***   https://gnupg.org/ftp/gcrypt/gpgrt
+*** (at least version 1.46 is required.)
+***
+configure:
+***
+*** It is now required to build with support for the
+*** New Portable Threads Library (nPth). Please install this
+*** library first.  The library is for example available at
+***   https://gnupg.org/ftp/gcrypt/npth/
+*** (at least version 1.2 (API 1) is required).
+***
+configure: error: 
+***
+*** Required libraries not found. Please consult the above messages
+*** and install them before running configure again.
+***

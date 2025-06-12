@@ -667,6 +667,15 @@ hash_for (PKT_public_key *pk)
         else
           return DIGEST_ALGO_SHA256;
     }
+  /* Use STREEBOG by default for GOST R34.10-2012 signature keys */
+  else if (pk->pubkey_algo == PUBKEY_ALGO_GOSTR34102012)
+    {
+      if (opt.personal_digest_prefs)
+        return opt.personal_digest_prefs[0].value;
+      if (gcry_mpi_get_nbits (pk->pkey[1]) > 256)
+        return DIGEST_ALGO_STREEBOG512;
+      return DIGEST_ALGO_STREEBOG256;
+    }
   else if (pk->pubkey_algo == PUBKEY_ALGO_DSA
            || pk->pubkey_algo == PUBKEY_ALGO_ECDSA)
     {

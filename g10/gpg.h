@@ -28,10 +28,10 @@
 # define WIN32_LEAN_AND_MEAN 1
 #endif
 
-#ifdef GPG_ERR_SOURCE_DEFAULT
-#error GPG_ERR_SOURCE_DEFAULT already defined
-#endif
+#ifndef GPG_ERR_SOURCE_DEFAULT
 #define GPG_ERR_SOURCE_DEFAULT  GPG_ERR_SOURCE_GPG
+#endif
+
 #define map_assuan_err(a) \
         map_assuan_err_with_source (GPG_ERR_SOURCE_DEFAULT, (a))
 #include <gpg-error.h>

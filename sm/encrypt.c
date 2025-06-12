@@ -236,6 +236,38 @@ ecdh_encrypt (DEK dek, gcry_sexp_t s_pkey, gcry_sexp_t *r_encval)
       log_error ("%s: curve '%s' is not supported\n", __func__, curve);
       goto leave;
     }
+#ifdef GCRY_MD_STRIBOG256
+  else if (!strcmp (curve, "1.2.643.7.1.2.1.1.1"))
+    {
+      /* GOST R 34.10-2012 ECDH paramSetA (256-bit) */
+      encr_algo_str = "1.2.643.7.1.1.6.1";
+      wrap_algo_str = "1.2.643.7.1.1.5.2";
+      hash_algo     = GCRY_MD_STRIBOG256;
+#ifdef GCRY_CIPHER_KUZNECHIK
+      cipher_algo   = GCRY_CIPHER_KUZNECHIK;
+      keylen        = 32;
+#else
+      err = gpg_error (GPG_ERR_UNSUPPORTED_ALGORITHM);
+      goto leave;
+#endif
+    }
+#endif
+#ifdef GCRY_MD_STRIBOG512
+  else if (!strcmp (curve, "1.2.643.7.1.2.1.2.1"))
+    {
+      /* GOST R 34.10-2012 ECDH paramSetA (512-bit) */
+      encr_algo_str = "1.2.643.7.1.1.6.2";
+      wrap_algo_str = "1.2.643.7.1.1.5.2";
+      hash_algo     = GCRY_MD_STRIBOG512;
+#ifdef GCRY_CIPHER_KUZNECHIK
+      cipher_algo   = GCRY_CIPHER_KUZNECHIK;
+      keylen        = 32;
+#else
+      err = gpg_error (GPG_ERR_UNSUPPORTED_ALGORITHM);
+      goto leave;
+#endif
+    }
+#endif
   else if (opt.force_ecdh_sha1kdf)
     {
       /* dhSinglePass-stdDH-sha1kdf-scheme */

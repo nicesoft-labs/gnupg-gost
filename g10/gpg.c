@@ -5242,7 +5242,8 @@ main (int argc, char **argv)
 	    wrong_args("--print-md algo [files]");
 	{
 	    int all_algos = (**argv=='*' && !(*argv)[1]);
-	    int algo = all_algos? 0 : gcry_md_map_name (*argv);
+	    /* Allow OpenPGP names for Streebog via string_to_digest_algo */
+	    int algo = all_algos? 0 : string_to_digest_algo (*argv);
 
 	    if( !algo && !all_algos )
 		log_error(_("invalid hash algorithm '%s'\n"), *argv );

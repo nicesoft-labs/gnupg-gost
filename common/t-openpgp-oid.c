@@ -204,6 +204,7 @@ test_openpgp_enum_curves (void)
   int p256 = 0;
   int p384 = 0;
   int p521 = 0;
+  int psA = 0, psB = 0, psC = 0;
 
   while ((name = openpgp_enum_curves (&iter)))
     {
@@ -215,12 +216,18 @@ test_openpgp_enum_curves (void)
         p384++;
       else if (!strcmp (name, "nistp521"))
         p521++;
+      else if (!strcmp (name, "paramSetA"))
+        psA++;
+      else if (!strcmp (name, "paramSetB"))
+        psB++;
+      else if (!strcmp (name, "paramSetC"))
+        psC++;
     }
 
-  if (p256 != 1 || p384 != 1 || p521 != 1)
+  if (p256 != 1 || p384 != 1 || p521 != 1 || psA < 1 || psB < 1 || psC < 1)
     {
-      /* We can only check the basic RFC-6637 requirements.  */
-      fputs ("standard ECC curve missing\n", stderr);
+      /* Check standard and GOST paramSet curve support. */
+      fputs ("required ECC or GOST curve missing\n", stderr);
       exit (1);
     }
 }

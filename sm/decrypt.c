@@ -303,6 +303,21 @@ ecdh_decrypt (unsigned char *secret, size_t secretlen,
       /* dhSinglePass-stdDH-sha512kdf-scheme */
       hash_algo = GCRY_MD_SHA512;
     }
+  /* GOST R 34.10-2012 ECDH schemes with Stribog hash */
+#ifdef GCRY_MD_STRIBOG256
+  else if (!strcmp (encr_algo_str, "1.2.643.7.1.1.6.1"))
+    {
+      /* GOST R 34.10-2012 ECDH scheme with Stribog256 */
+      hash_algo = GCRY_MD_STRIBOG256;
+    }
+#endif
+#ifdef GCRY_MD_STRIBOG512
+  else if (!strcmp (encr_algo_str, "1.2.643.7.1.1.6.2"))
+    {
+      /* GOST R 34.10-2012 ECDH scheme with Stribog512 */
+      hash_algo = GCRY_MD_STRIBOG512;
+    }
+#endif
   else if (!strcmp (encr_algo_str, "1.3.133.16.840.63.0.2"))
     {
       /* dhSinglePass-stdDH-sha1kdf-scheme */
@@ -329,6 +344,14 @@ ecdh_decrypt (unsigned char *secret, size_t secretlen,
       cipher_algo = GCRY_CIPHER_AES256;
       keylen = 32;
     }
+#ifdef GCRY_CIPHER_KUZNECHIK
+  else if (!strcmp (wrap_algo_str, "1.2.643.7.1.1.5.2"))
+    {
+      /* GOST Kuznechik key wrap */
+      cipher_algo = GCRY_CIPHER_KUZNECHIK;
+      keylen = 32;
+    }
+#endif
   else
     {
       err = gpg_error (GPG_ERR_PUBKEY_ALGO);

@@ -91,6 +91,13 @@ static unsigned char const oid_hmacWithSHA384[8] = {
 static unsigned char const oid_hmacWithSHA512[8] = {
   0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x0B };
 
+/* GOST R 34.11-94 OIDs (cryptopro and default) */
+static unsigned char const oid_gostr3411_cp[6]   = { 0x2A, 0x85, 0x03, 0x02, 0x02, 0x03 };
+static unsigned char const oid_gostr3411_94[6]   = { 0x2A, 0x85, 0x03, 0x02, 0x02, 0x09 };
+/* GOST R 34.11-2012 (Stribog) OIDs */
+static unsigned char const oid_gost3411_12_256[8] = { 0x2A, 0x85, 0x03, 0x07, 0x01, 0x01, 0x02, 0x02 };
+static unsigned char const oid_gost3411_12_512[8] = { 0x2A, 0x85, 0x03, 0x07, 0x01, 0x01, 0x02, 0x03 };
+
 static unsigned char const oid_rsaEncryption[9] = {
   0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01 };
 static unsigned char const oid_pcPublicKey[7] = {
@@ -225,6 +232,18 @@ digest_algo_from_oid (unsigned char const *oid, size_t oidlen)
   else if (oidlen == DIM(oid_hmacWithSHA512) &&
            !memcmp (oid, oid_hmacWithSHA512, oidlen))
     algo = GCRY_MD_SHA512;
+  else if (oidlen == DIM(oid_gostr3411_94) &&
+           !memcmp (oid, oid_gostr3411_94, oidlen))
+    algo = GCRY_MD_GOSTR3411_94;
+  else if (oidlen == DIM(oid_gostr3411_cp) &&
+           !memcmp (oid, oid_gostr3411_cp, oidlen))
+    algo = GCRY_MD_GOSTR3411_CP;
+  else if (oidlen == DIM(oid_gost3411_12_256) &&
+           !memcmp (oid, oid_gost3411_12_256, oidlen))
+    algo = GCRY_MD_STRIBOG256;
+  else if (oidlen == DIM(oid_gost3411_12_512) &&
+           !memcmp (oid, oid_gost3411_12_512, oidlen))
+    algo = GCRY_MD_STRIBOG512;
   else
     algo = 0;
   return algo;

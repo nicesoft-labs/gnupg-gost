@@ -217,8 +217,8 @@ msgid ""
 "An ssh process requested the use of key%%0A  %s%%0A  (%s)%%0ADo you want to "
 "allow this?"
 msgstr ""
-"Процесом ssh надіслано запит щодо використання ключа%%0A  %s%%0A  "
-"(%s)%%0AНадати доступ до цього ключа?"
+"Процесом ssh надіслано запит щодо використання ключа%%0A  %s%%0A  (%s)"
+"%%0AНадати доступ до цього ключа?"
 
 msgid "Allow"
 msgstr "Надати"
@@ -782,8 +782,8 @@ msgstr "Будь ласка, вставте картку з серійним н�
 #| "to allow this?"
 msgid "Requested the use of key%%0A  %s%%0A  %s%%0ADo you want to allow this?"
 msgstr ""
-"Процесом ssh надіслано запит щодо використання ключа%%0A  %s%%0A  "
-"(%s)%%0AНадати доступ до цього ключа?"
+"Процесом ssh надіслано запит щодо використання ключа%%0A  %s%%0A  (%s)"
+"%%0AНадати доступ до цього ключа?"
 
 #, c-format
 msgid ""
@@ -4622,6 +4622,12 @@ msgstr "не вдалося створити файл резервної коп�
 #, c-format
 msgid "Note: backup of card key saved to '%s'\n"
 msgstr "ЗАУВАЖЕННЯ: резервну копію ключа на картці збережено до «%s»\n"
+
+msgid ""
+"Warning: Although the key has been written to the card, a backup file was\n"
+"         not properly written to the disk.  You may want to repeat the\n"
+"         entire operation or just create a new encryption key on the card.\n"
+msgstr ""
 
 #, c-format
 msgid "writing public key to '%s'\n"

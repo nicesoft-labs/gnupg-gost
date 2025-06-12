@@ -4722,6 +4722,12 @@ msgstr "tiedostoa \"%s\" ei voi luoda: %s\n"
 msgid "Note: backup of card key saved to '%s'\n"
 msgstr "HUOM: salainen avain %08lX vanheni %s\n"
 
+msgid ""
+"Warning: Although the key has been written to the card, a backup file was\n"
+"         not properly written to the disk.  You may want to repeat the\n"
+"         entire operation or just create a new encryption key on the card.\n"
+msgstr ""
+
 #, fuzzy, c-format
 #| msgid "writing public key to `%s'\n"
 msgid "writing public key to '%s'\n"
@@ -10327,14 +10333,14 @@ msgstr ""
 
 #~ msgid "Please report bugs to <gnupg-bugs@gnu.org>.\n"
 #~ msgstr ""
-#~ "Ilmoita ohjelmistovioista (englanniksi) osoitteeseen <gnupg-bugs@gnu."
-#~ "org>.\n"
+#~ "Ilmoita ohjelmistovioista (englanniksi) osoitteeseen <gnupg-"
+#~ "bugs@gnu.org>.\n"
 
 #, fuzzy
 #~ msgid "Please report bugs to "
 #~ msgstr ""
-#~ "Ilmoita ohjelmistovioista (englanniksi) osoitteeseen <gnupg-bugs@gnu."
-#~ "org>.\n"
+#~ "Ilmoita ohjelmistovioista (englanniksi) osoitteeseen <gnupg-"
+#~ "bugs@gnu.org>.\n"
 
 #, fuzzy
 #~ msgid "DSA keypair will have %u bits.\n"
@@ -10676,8 +10682,8 @@ msgstr ""
 
 #~ msgid "can't put notation data into v3 (PGP 2.x style) key signatures\n"
 #~ msgstr ""
-#~ "notaatiodataa ei voi laittaa v3-avainallekirjoituksiin (PGP 2.x -"
-#~ "tyyliset)\n"
+#~ "notaatiodataa ei voi laittaa v3-avainallekirjoituksiin (PGP 2.x "
+#~ "-tyyliset)\n"
 
 #~ msgid "can't put a policy URL into v3 (PGP 2.x style) signatures\n"
 #~ msgstr ""
@@ -10685,8 +10691,8 @@ msgstr ""
 
 #~ msgid "can't put a policy URL into v3 key (PGP 2.x style) signatures\n"
 #~ msgstr ""
-#~ "käytäntö-URL:ia ei voi laittaa v3-avainallekirjoituksiin (PGP 2.x -"
-#~ "tyyliset)\n"
+#~ "käytäntö-URL:ia ei voi laittaa v3-avainallekirjoituksiin (PGP 2.x "
+#~ "-tyyliset)\n"
 
 #, fuzzy
 #~ msgid "shelll"
@@ -11502,8 +11508,8 @@ msgstr ""
 #~ "DSA (eli DSS) on digitaalinen allekirjoitusalgoritmi, jota voidaan \n"
 #~ "käyttää vain allekirjoituksiin.  DSA:ta suositellaan, koska sillä "
 #~ "tuotetut \n"
-#~ "allekirjoitukset voidaan varmistaa paljon nopeammin verrattuna ElGamal:"
-#~ "iin.\n"
+#~ "allekirjoitukset voidaan varmistaa paljon nopeammin verrattuna "
+#~ "ElGamal:iin.\n"
 #~ "\n"
 #~ "ElGamal-algoritmia voidaan käyttää sekä allekirjoituksiin että \n"
 #~ "salaamiseen.  OpenPGP erottaa seuraavat kaksi toimintatapaa toisistaan:\n"

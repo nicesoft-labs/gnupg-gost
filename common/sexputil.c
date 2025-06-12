@@ -1163,6 +1163,15 @@ hash_algo_to_string (int algo)
        { "sha3-384",  GCRY_MD_SHA3_384 },
        { "sha3-512",  GCRY_MD_SHA3_512 },
        { "ripemd160", GCRY_MD_RMD160 },
+#ifdef GCRY_MD_GOSTR3411_94
+       { "gostr3411",  GCRY_MD_GOSTR3411_94 },
+#endif
+#ifdef GCRY_MD_STRIBOG256
+       { "streebog256", GCRY_MD_STRIBOG256 },
+#endif
+#ifdef GCRY_MD_STRIBOG512
+       { "streebog512", GCRY_MD_STRIBOG512 },
+#endif
        { "rmd160",    GCRY_MD_RMD160 },
        { "md2",       GCRY_MD_MD2 },
        { "md4",       GCRY_MD_MD4 },

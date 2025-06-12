@@ -112,6 +112,12 @@ gnupg_initialize_compliance (int gnupg_module_name)
   log_assert ((int) GCRY_MD_SHA384       == (int) DIGEST_ALGO_SHA384);
   log_assert ((int) GCRY_MD_SHA512       == (int) DIGEST_ALGO_SHA512);
   log_assert ((int) GCRY_MD_SHA224       == (int) DIGEST_ALGO_SHA224);
+#ifdef GCRY_MD_STRIBOG256
+  log_assert ((int) GCRY_MD_STRIBOG256   == (int) DIGEST_ALGO_STREEBOG256);
+#endif
+#ifdef GCRY_MD_STRIBOG512
+  log_assert ((int) GCRY_MD_STRIBOG512   == (int) DIGEST_ALGO_STREEBOG512);
+#endif
 
   switch (gnupg_module_name)
     {

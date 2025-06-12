@@ -145,7 +145,10 @@ typedef enum
     CIPHER_ALGO_CAMELLIA128 = 11,
     CIPHER_ALGO_CAMELLIA192 = 12,
     CIPHER_ALGO_CAMELLIA256 = 13,
-    CIPHER_ALGO_PRIVATE10   = 110
+    /* GOST 28147-89 symmetric cipher, sync with libgcrypt */
+    CIPHER_ALGO_GOST28147         = 315,
+    CIPHER_ALGO_GOST28147_MESH    = 317,
+    CIPHER_ALGO_PRIVATE10         = 110
   }
 cipher_algo_t;
 
@@ -171,7 +174,10 @@ typedef enum
     PUBKEY_ALGO_ECDSA       = 19, /* RFC-6637  */
     PUBKEY_ALGO_ELGAMAL     = 20, /* Elgamal encrypt+sign (legacy).  */
     /*                        21     reserved by OpenPGP.            */
-    PUBKEY_ALGO_EDDSA       = 22, /* EdDSA (not yet assigned).       */
+    PUBKEY_ALGO_EDDSA           = 22, /* EdDSA (not yet assigned).       */
+    PUBKEY_ALGO_GOSTR34102001   = 32, /* GOST R 34.10-2001 signature */
+    PUBKEY_ALGO_GOSTR34102012   = 33, /* GOST R 34.10-2012 signature */
+    PUBKEY_ALGO_GOSTR34102012_ECDH = 34, /* GOST R 34.10-2012 ECDH key agreement */
     PUBKEY_ALGO_PRIVATE10   = 110
   }
 pubkey_algo_t;
@@ -187,7 +193,12 @@ typedef enum
     DIGEST_ALGO_SHA384      =  9,
     DIGEST_ALGO_SHA512      = 10,
     DIGEST_ALGO_SHA224      = 11,
-    DIGEST_ALGO_PRIVATE10   = 110
+    /* 4, 5, 6, and 7 were reserved; now used for GOST R 34.11-94 and Streebog */
+    /* GOST R 34.11-94 and R 34.11-2012 (Streebog) IDs from libgcrypt */
+    DIGEST_ALGO_GOSTR3411    = 308, /* GCRY_MD_GOSTR3411_94 */
+    DIGEST_ALGO_STREEBOG256  = 309, /* GCRY_MD_STRIBOG256 */
+    DIGEST_ALGO_STREEBOG512  = 310, /* GCRY_MD_STRIBOG512 */
+    DIGEST_ALGO_PRIVATE10    = 110
   }
 digest_algo_t;
 

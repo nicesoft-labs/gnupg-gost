@@ -1,0 +1,10 @@
+config.guess: cannot create a temporary directory in /tmp
+Error in tempdir() using /tmp/ahXXXXXX: Could not create directory /tmp/aheYbedR: Permission denied at /usr/share/autoconf/Autom4te/General.pm line 297.
+**Error**: `autoheader' not installed or too old.
+           Version [2.69] or newer is required.
+           Note that this is part of `autoconf'.
+
+Note that you may use alternative versions of the tools by setting
+the corresponding environment variables; see README.GIT for details.
+
+autogen.sh: Stop.

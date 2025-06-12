@@ -285,6 +285,18 @@ transform_sigval (const unsigned char *sigval, size_t sigvallen, int mdalgo,
           oid = "1.3.101.112"; /* ed25519 */
           break;
 
+        /* GOST R 34.10-2012 signature with GOST R 34.11-2012 hash */
+#ifdef GCRY_MD_STRIBOG256
+        case GCRY_MD_STRIBOG256 | (GCRY_PK_ECC << 16):
+          oid = "1.2.643.7.1.1.3.2"; /* GOST R34.10-2012 with Stribog256 */
+          break;
+#endif
+#ifdef GCRY_MD_STRIBOG512
+        case GCRY_MD_STRIBOG512 | (GCRY_PK_ECC << 16):
+          oid = "1.2.643.7.1.1.3.3"; /* GOST R34.10-2012 with Stribog512 */
+          break;
+#endif
+
         default:
           return gpg_error (GPG_ERR_DIGEST_ALGO);
         }

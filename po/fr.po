@@ -3924,8 +3924,8 @@ msgstr ""
 
 msgid "You may not add a designated revoker to a PGP 2.x-style key.\n"
 msgstr ""
-"Vous ne pouvez pas ajouter de révocateur désigné à une clef de type PGP 2."
-"x.\n"
+"Vous ne pouvez pas ajouter de révocateur désigné à une clef de type "
+"PGP 2.x.\n"
 
 msgid "Enter the user ID of the designated revoker: "
 msgstr "Entrez l'identité du révocateur désigné : "
@@ -4546,6 +4546,12 @@ msgstr "impossible de créer le fichier de sauvegarde « %s » : %s\n"
 #, c-format
 msgid "Note: backup of card key saved to '%s'\n"
 msgstr "Remarque : sauvegarde de la clef de la carte dans « %s »\n"
+
+msgid ""
+"Warning: Although the key has been written to the card, a backup file was\n"
+"         not properly written to the disk.  You may want to repeat the\n"
+"         entire operation or just create a new encryption key on the card.\n"
+msgstr ""
 
 #, c-format
 msgid "writing public key to '%s'\n"

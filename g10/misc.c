@@ -519,6 +519,17 @@ map_cipher_openpgp_to_gcry (cipher_algo_t algo)
 #else
     case CIPHER_ALGO_CAMELLIA256: return 0;
 #endif
+/* GOST 28147-89 cipher */
+#ifdef GCRY_CIPHER_GOST28147
+    case CIPHER_ALGO_GOST28147:      return GCRY_CIPHER_GOST28147;
+#else
+    case CIPHER_ALGO_GOST28147:      return 0;
+#endif
+#ifdef GCRY_CIPHER_GOST28147_MESH
+    case CIPHER_ALGO_GOST28147_MESH: return GCRY_CIPHER_GOST28147_MESH;
+#else
+    case CIPHER_ALGO_GOST28147_MESH: return 0;
+#endif
     default: return 0;
     }
 }
@@ -541,6 +552,8 @@ map_cipher_gcry_to_openpgp (enum gcry_cipher_algos algo)
     case GCRY_CIPHER_CAMELLIA128: return CIPHER_ALGO_CAMELLIA128;
     case GCRY_CIPHER_CAMELLIA192: return CIPHER_ALGO_CAMELLIA192;
     case GCRY_CIPHER_CAMELLIA256: return CIPHER_ALGO_CAMELLIA256;
+    case GCRY_CIPHER_GOST28147:    return CIPHER_ALGO_GOST28147;
+    case GCRY_CIPHER_GOST28147_MESH: return CIPHER_ALGO_GOST28147_MESH;
     default: return 0;
     }
 }
@@ -726,16 +739,22 @@ openpgp_pk_test_algo2 (pubkey_algo_t algo, unsigned int use)
     case PUBKEY_ALGO_ELGAMAL_E: ga = GCRY_PK_ELG;   break;
     case PUBKEY_ALGO_DSA:       ga = GCRY_PK_DSA;   break;
 
+    /* GOST R 34.10-2012 ECDH (user ID 34) */
 #ifdef GPG_USE_ECDH
     case PUBKEY_ALGO_ECDH:      ga = GCRY_PK_ECC;   break;
+    case PUBKEY_ALGO_GOSTR34102012_ECDH: ga = GCRY_PK_ECC; break;
 #else
     case PUBKEY_ALGO_ECDH:      break;
+    case PUBKEY_ALGO_GOSTR34102012_ECDH: break;
 #endif
 
+    /* GOST R 34.10-2012 signature (user ID 33) */
 #ifdef GPG_USE_ECDSA
     case PUBKEY_ALGO_ECDSA:     ga = GCRY_PK_ECC;   break;
+    case PUBKEY_ALGO_GOSTR34102012: ga = GCRY_PK_ECC; break;
 #else
     case PUBKEY_ALGO_ECDSA:     break;
+    case PUBKEY_ALGO_GOSTR34102012: break;
 #endif
 
 #ifdef GPG_USE_EDDSA
@@ -781,6 +800,7 @@ openpgp_pk_algo_usage ( int algo )
           break;
       case PUBKEY_ALGO_RSA_E:
       case PUBKEY_ALGO_ECDH:
+      case PUBKEY_ALGO_GOSTR34102012_ECDH:
           use = PUBKEY_USAGE_ENC | PUBKEY_USAGE_RENC;
           break;
       case PUBKEY_ALGO_RSA_S:
@@ -798,6 +818,7 @@ openpgp_pk_algo_usage ( int algo )
           break;
       case PUBKEY_ALGO_ECDSA:
       case PUBKEY_ALGO_EDDSA:
+      case PUBKEY_ALGO_GOSTR34102012:
           use = PUBKEY_USAGE_CERT | PUBKEY_USAGE_SIG | PUBKEY_USAGE_AUTH;
       default:
           break;
@@ -822,6 +843,8 @@ openpgp_pk_algo_name (pubkey_algo_t algo)
     case PUBKEY_ALGO_ECDH:      return "ECDH";
     case PUBKEY_ALGO_ECDSA:     return "ECDSA";
     case PUBKEY_ALGO_EDDSA:     return "EDDSA";
+    case PUBKEY_ALGO_GOSTR34102012: return "GOSTR34102012";
+    case PUBKEY_ALGO_GOSTR34102012_ECDH: return "GOSTR34102012_ECDH";
     default: return "?";
     }
 }
@@ -862,10 +885,22 @@ map_md_openpgp_to_gcry (digest_algo_t algo)
     case DIGEST_ALGO_SHA384: return 0;
 #endif
 
-#ifdef GPG_USE_SHA512
-    case DIGEST_ALGO_SHA512: return GCRY_MD_SHA512;
+    /* GOST R 34.11-94 and GOST R 34.11-2012 (Streebog) */
+#ifdef GCRY_MD_GOSTR3411_94
+    case DIGEST_ALGO_GOSTR3411:   return GCRY_MD_GOSTR3411_94;
 #else
-    case DIGEST_ALGO_SHA512: return 0;
+    case DIGEST_ALGO_GOSTR3411:   return 0;
+#endif
+    /* GOST R 34.11-2012 (Stribog) */
+#ifdef GCRY_MD_STRIBOG256
+    case DIGEST_ALGO_STREEBOG256: return GCRY_MD_STRIBOG256;
+#else
+    case DIGEST_ALGO_STREEBOG256: return 0;
+#endif
+#ifdef GCRY_MD_STRIBOG512
+    case DIGEST_ALGO_STREEBOG512: return GCRY_MD_STRIBOG512;
+#else
+    case DIGEST_ALGO_STREEBOG512: return 0;
 #endif
     default: return 0;
     }
@@ -901,7 +936,10 @@ openpgp_md_algo_name (int algo)
     case DIGEST_ALGO_SHA256: return "SHA256";
     case DIGEST_ALGO_SHA384: return "SHA384";
     case DIGEST_ALGO_SHA512: return "SHA512";
-    case DIGEST_ALGO_SHA224: return "SHA224";
+    case DIGEST_ALGO_SHA224:    return "SHA224";
+    case DIGEST_ALGO_GOSTR3411: return "GOSTR3411";
+    case DIGEST_ALGO_STREEBOG256: return "STREEBOG256";
+    case DIGEST_ALGO_STREEBOG512: return "STREEBOG512";
     }
   return "?";
 }
@@ -1279,6 +1317,11 @@ string_to_digest_algo (const char *string)
 {
   int val;
 
+  /* Accept OpenPGP names for GOST R 34.11-2012 (Streebog). */
+  if (string && !ascii_strcasecmp (string, "streebog256"))
+    return DIGEST_ALGO_STREEBOG256;
+  if (string && !ascii_strcasecmp (string, "streebog512"))
+    return DIGEST_ALGO_STREEBOG512;
   /* FIXME: We should make use of our wrapper function and not assume
      that there is a 1 to 1 mapping between OpenPGP and Libgcrypt.  */
   val = gcry_md_map_name (string);

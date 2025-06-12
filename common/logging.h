@@ -37,6 +37,8 @@
 #include <gpg-error.h>
 #include "mischelp.h"
 #include "w32help.h"
+#include <stdlib.h>
+
 
 /* We use the libgpg-error provided log functions.  but we need one
  * more function:  */
